@@ -28,7 +28,7 @@ with open(logfile, "r") as f:
             rows.append([file_path, line_num, message])
 
 with open(outfile, "w", newline="", encoding="utf-8") as csvfile:
-    writer = csv.writer(csvfile)
+    writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     writer.writerow(["file", "line", "message"])
     writer.writerows(rows)
 
