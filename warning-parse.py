@@ -1,8 +1,19 @@
 import re
 import csv
+import sys
+import os
 
-logfile = "warning.log"
-outfile = "doxygen_warnings.csv"
+if len(sys.argv) < 2:
+    print("Usage: python3 parse_doxygen_warnings.py <input_logfile> <output_csv>")
+    sys.exit(1)
+
+logfile = sys.argv[1]
+outfile = sys.argv[2]
+
+if not os.path.exists(logfile):
+    print(f"Error: Input file '{logfile}' does not exist.")
+    sys.exit(1)
+
 
 pattern = re.compile(r'^(.*):(\d+): warning: (.*)$')
 rows = []
